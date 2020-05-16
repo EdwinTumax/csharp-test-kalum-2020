@@ -10,23 +10,28 @@
         mc:Ignorable="d"
         Title="Login" Height="450" Width="800"
         WindowStartupLocation="CenterScreen" Name="FormularioLogin">
-    <Border>
-        <StackPanel>
-            <Label>
+    <Border Background="#E0F2F7" CornerRadius="20" Margin="20">
+        <StackPanel Margin="20">
+            <Label Foreground="Black" FontSize="25" HorizontalAlignment="Center">
                 <Bold>Login</Bold>
             </Label>
             <Separator Background="Black"/>
-            <Label> 
+            <Label Foreground="Blue"> 
                 <Bold>Username</Bold>
             </Label>
-            <TextBox Name="txtUsername" Text="{Binding Username}"/>
-            <Label>
+            <TextBox Name="txtUsername" Text="{Binding Username}" 
+                Foreground="Black"
+                FontSize="18"/>
+            <Label Foreground="Blue">
                 <Bold>Password</Bold>
             </Label>
-            <PasswordBox x:Name="txtPassword"/>
+            <PasswordBox x:Name="txtPassword" Foreground="Black" FontSize="18"/>
             <Button Content="Entrar" 
+                Margin="60 10"
                 Command="{Binding Instancia}" 
-                CommandParameter="{Binding ElementName=FormularioLogin}"/>
+                CommandParameter="{Binding ElementName=FormularioLogin}"
+                Background="#1979A9"
+                Foreground="Black" Height="50"/>
         </StackPanel>
     </Border>
 </mah:MetroWindow>
