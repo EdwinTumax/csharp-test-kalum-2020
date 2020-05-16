@@ -35,6 +35,11 @@ namespace Kalum2020v1.ModelViews
                AlumnoView view =  new AlumnoView();
                view.ShowDialog();
             }
+            else if(parametro.Equals("Login"))
+            {
+                LoginView view = new LoginView();
+                view.ShowDialog();
+            }
         }
 
         public MainViewModel()

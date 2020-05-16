@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Kalum2020v1"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -18,13 +19,17 @@
               HorizontalAlignment="Left"
               VerticalAlignment="Stretch">
              <MenuItem Header="Menu">
+                <MenuItem Header="Login">
+                    <MenuItem Command="{Binding Instancia}"
+                              CommandParameter="Login"
+                              Header="Iniciar Sesion"/>
+                </MenuItem>
                 <MenuItem Header="Catálogos">
                     <MenuItem Command="{Binding Instancia}"
                               CommandParameter="AlumnosView"
-                              Header="Alumnos" />
-                    </MenuItem>
+                              Header="Alumnos"/>
+                    <MenuItem Header="Reportes"/>
                 </MenuItem>
-                <MenuItem Header="Reportes"/>
                 <Separator />
                 <MenuItem Header="Acerca de...">
                     <MenuItem Command=""
@@ -34,6 +39,7 @@
                               CommandParameter=""
                               Header="" />
                 </MenuItem>
+            </MenuItem>
         </Menu>
     </Grid>
 </mah:MetroWindow>
