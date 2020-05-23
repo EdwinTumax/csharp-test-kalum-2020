@@ -8,11 +8,13 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Kalum2020v1.Models;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace Kalum2020v1.ModelViews
 {
     public class LoginModelView : INotifyPropertyChanged, ICommand
     {
+        private IDialogCoordinator _DialogCoordinator;
         private KalumDbContext _DbContext;
 
         private MainViewModel _MainViewModel;
@@ -50,10 +52,11 @@ namespace Kalum2020v1.ModelViews
             set { _Instancia = value; NotificarCambio("Instancia"); }
         }
         
-        public LoginModelView(MainViewModel mainViewModel)
+        public LoginModelView(IDialogCoordinator instance, MainViewModel mainViewModel)
         {
             this.MainViewModel = mainViewModel;
             this.Instancia = this;
+            this._DialogCoordinator = instance;
             this._DbContext = new KalumDbContext();
         }
         
@@ -64,8 +67,7 @@ namespace Kalum2020v1.ModelViews
         {
             return true;
         }
-
-        public void Execute(object parametro)
+        public async void Execute(object parametro)
         {
             if(parametro is Window)
             {
@@ -83,7 +85,7 @@ namespace Kalum2020v1.ModelViews
                 }
                 if(this.Usuario != null)
                 {
-                    MessageBox.Show($"Bienvenido {_Usuario.Apellidos} {_Usuario.Nombres}");                                    
+                    await this._DialogCoordinator.ShowMessageAsync(this,"Login",$"Bienvenido {_Usuario.Apellidos} {_Usuario.Nombres}");
                     this.MainViewModel.IsMenuCatalogo = true; 
                     this.MainViewModel.Usuario = this.Usuario;                   
                    ((Window)parametro).Close();                    

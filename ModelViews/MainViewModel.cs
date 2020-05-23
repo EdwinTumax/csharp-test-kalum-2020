@@ -9,7 +9,14 @@ namespace Kalum2020v1.ModelViews
 {
     public class MainViewModel : INotifyPropertyChanged, ICommand
     {
-
+        
+        private string _ImgFoto = $"{Environment.CurrentDirectory}\\Images\\fondo2.gif";
+        public string ImgFoto
+        {
+            get { return _ImgFoto; }
+            set { _ImgFoto = value; }
+        }
+        
         private Usuario _Usuario;
         public Usuario Usuario
         {
