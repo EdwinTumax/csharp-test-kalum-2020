@@ -24,7 +24,7 @@
                               CommandParameter="Login"
                               Header="Iniciar Sesion"/>
                 </MenuItem>
-                <MenuItem Header="Catálogos">
+                <MenuItem Header="Catálogos" IsEnabled="{Binding IsMenuCatalogo}">
                     <MenuItem Command="{Binding Instancia}"
                               CommandParameter="AlumnosView"
                               Header="Alumnos"/>

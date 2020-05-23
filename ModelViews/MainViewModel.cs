@@ -2,12 +2,28 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using Kalum2020v1.Models;
 using Kalum2020v1.Views;
 
 namespace Kalum2020v1.ModelViews
 {
     public class MainViewModel : INotifyPropertyChanged, ICommand
     {
+
+        private Usuario _Usuario;
+        public Usuario Usuario
+        {
+            get { return _Usuario; }
+            set { _Usuario = value; }
+        }
+                
+        private bool _IsMenuCatalogo = false;
+        public bool IsMenuCatalogo
+        {
+            get { return _IsMenuCatalogo; }
+            set { _IsMenuCatalogo = value; NotificarCambio("IsMenuCatalogo");}
+        }
+        
         public MainViewModel _Instancia;
         public MainViewModel Instancia {
             get
@@ -37,8 +53,14 @@ namespace Kalum2020v1.ModelViews
             }
             else if(parametro.Equals("Login"))
             {
-                LoginView view = new LoginView();
-                view.ShowDialog();
+                try{
+                    LoginView view = new LoginView(this);
+                    view.ShowDialog();                    
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

@@ -14,9 +14,22 @@ namespace Kalum2020v1.ModelViews
     public class LoginModelView : INotifyPropertyChanged, ICommand
     {
         private KalumDbContext _DbContext;
+
+        private MainViewModel _MainViewModel;
+        public MainViewModel MainViewModel
+        {
+            get { return _MainViewModel; }
+            set { _MainViewModel = value; }
+        }
+        
         private string _Password;
 
         private Usuario _Usuario;
+        private Usuario Usuario
+        {
+            get { return _Usuario;}
+            set { _Usuario = value;}
+        }
         public string Password
         {
             get { return _Password; }
@@ -37,8 +50,9 @@ namespace Kalum2020v1.ModelViews
             set { _Instancia = value; NotificarCambio("Instancia"); }
         }
         
-        public LoginModelView()
+        public LoginModelView(MainViewModel mainViewModel)
         {
+            this.MainViewModel = mainViewModel;
             this.Instancia = this;
             this._DbContext = new KalumDbContext();
         }
@@ -65,11 +79,14 @@ namespace Kalum2020v1.ModelViews
                         UsernameParameter,PasswordParameter).ToList();
                 foreach(Object objeto in Resultado)
                 {
-                     _Usuario = (Usuario)objeto;
+                     this.Usuario = (Usuario)objeto;
                 }
-                if(_Usuario != null)
+                if(this.Usuario != null)
                 {
-                    MessageBox.Show($"Bienvenido {_Usuario.Apellidos} {_Usuario.Nombres}");
+                    MessageBox.Show($"Bienvenido {_Usuario.Apellidos} {_Usuario.Nombres}");                                    
+                    this.MainViewModel.IsMenuCatalogo = true; 
+                    this.MainViewModel.Usuario = this.Usuario;                   
+                   ((Window)parametro).Close();                    
                 }
                 else
                 {
